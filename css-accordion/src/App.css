@@ -1,38 +1,128 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
   min-height: 100vh;
+  background-color: #faf7fc;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
+  gap: 1.25em;
+}
+
+.container .tab {
+  position: relative;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  overflow: hidden;
+}
+
+.container .tab input {
+  appearance: none;
+}
+
+.container .tab label {
+  cursor: pointer;
+  display: flex;
   align-items: center;
+}
+
+.container .tab label::after {
+  content: "+";
+  position: absolute;
+  right: 1em;
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.2);
+  transition: transform 1s;
+}
+
+.container .tab:hover label::after {
+  color: #333;
+}
+
+.container .tab input:checked ~ label::after {
+  transform: rotate(135deg);
+  color: #fff;
+}
+
+.container .tab label h2 {
+  background-color: #333;
+  color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  font-size: 1.25em;
+  border-radius: 5px;
+  margin-right: 0.5em;
 }
 
-.App-link {
-  color: #61dafb;
+.container .tab input:checked ~ label h2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 8em;
+  justify-content: flex-end;
+  padding-right: 0.2em;
+  padding-top: 0.2em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container .tab:nth-child(2) label h2 {
+  background: linear-gradient(135deg, #80e9f5, #345e60);
+}
+
+.container .tab:nth-child(3) label h2 {
+  background: linear-gradient(135deg, #9e9cf5, #474664);
+}
+.container .tab:nth-child(4) label h2 {
+  background: linear-gradient(135deg, #f4a4e9, #674b64);
+}
+.container .tab:nth-child(5) label h2 {
+  background: linear-gradient(135deg, #f47fa6, #613644);
+}
+
+.container .tab label h3 {
+  color: #333;
+  position: relative;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.container .tab .content {
+  max-height: 0;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.container .tab input:checked ~ .content {
+  max-height: 100vh;
+}
+
+.container .tab .content p {
+  padding: 1em 0;
+  line-height: 1.5em;
+  color: #333;
+  position: relative;
+  z-index: 10;
+}
+
+.container .tab input:checked ~ .content p,
+.container .tab input:checked ~ label h3 {
+  color: #fff;
 }
